@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>rbCanvas/p5</title>
+<!-- rbCanvas/p5 editor v0.5.1 -->
+</head>
+<body>
+<script type="text/javascript" src="https://rbcanvas.net/p5/0.5.1/runtime/opal/opal_patched.min.js"></script>
+<script type="text/javascript" src="https://rbcanvas.net/p5/0.5.1/runtime/opal/opal-parser_patched.min.js" onload="Opal.load('opal-parser'); Opal.load('parser/ruby31');"></script>
+<script type="text/javascript" src="https://rbcanvas.net/p5/0.5.1/runtime/opal/native.min.js" onload="Opal.load('native')"></script>
+<script type="text/javascript" src="https://rbcanvas.net/p5/0.5.1/runtime/opal/date.min.js" onload="Opal.load('date')"></script>
+<script type="text/javascript" src="https://rbcanvas.net/p5/0.5.1/runtime/p5/p5.min.js"></script>
+<script type="text/javascript" src="https://rbcanvas.net/p5/0.5.1/runtime/rbcanvasp5/rbcanvasp5.js"></script>
+<script type="text/ruby" section="s00" name="main">
+$PROGRAM_NAME = "main"
+# 初期設定用のコード (your setup code here)
+def setup
+  createCanvas(1200, 600)
+  $colors = ["red", "yellow", "green", "white", "black", "black"]
+end
+
+# 画面描画用のコード (your draw code here)
+def draw
+  background(220)
+  if $is_clicked
+    $colors = ["red", "yellow", "green", "white", "black", "black"].shuffle
+  end
+  
+  for i in 0...6
+    fill($colors[i])
+    rect(i * 1200 / 6, 0, 1200 / 6, 1200 / 6)
+  end
+  $is_clicked = false
+end
+
+def mouseClicked
+  $is_clicked = true
+end
+
+$PROGRAM_NAME = "main"
+</script>
+
+</body>
+</html>
