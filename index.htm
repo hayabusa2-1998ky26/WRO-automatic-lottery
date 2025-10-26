@@ -19,6 +19,10 @@ def setup
   ww, wh = windowWidth - 10, windowHeight - 10
   createCanvas(ww, wh)
   $colors = ["red", "yellow", "green", "white", "black", "black"]
+  $colors_letter = {"red": "black", "yellow": "black", "green": "black", "white": "black", "black": "white"}
+  textAlign(CENTER, CENTER)
+  noStroke
+  textFont("sans-serif")
 end
 
 # 画面描画用のコード (your draw code here)
@@ -34,10 +38,20 @@ def draw
     fill($colors[i])
     if ww > wh
       size = [ww / 6.0, wh].min
+      textSize(size * 0.2)
       rect(i * size, (wh - size) / 2.0, size, size)
+    
+      fill($colors_letter[$colors[i]])
+      text(i, (i + 0.5) * size, (wh - size) / 2.0 + size * 0.5)
     else
       size = [wh / 6.0, ww].min
       rect((ww - size) / 2.0, i * size, size, size)
+      
+      textSize(size * 0.2)
+      fill($colors_letter[$colors[i]])
+      rotate(PI / 2)
+      text(i, (i + 0.5) * size, -((ww - size) / 2.0 + size * 0.5))
+      rotate(-PI / 2)
     end
   end
   $is_clicked = false
